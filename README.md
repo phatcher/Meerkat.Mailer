@@ -1,7 +1,7 @@
 Meerkat Mailer
 ================
 
-Provides providing email merge and dispatching capability for desktop and web applications.
+Provides email merge and dispatching capability for desktop and web applications.
 
 Available as a NuGet packages [Meerkat.Mailer](https://www.nuget.org/packages/Meerkat.Mailer/)
 
@@ -18,7 +18,7 @@ I have my tools in C:\Tools so I use *build.cmd Default tools=C:\Tools encoding=
 
 The library is available under the [MIT License](http://en.wikipedia.org/wiki/MIT_License), for more information see the [License file][1] in the GitHub repository.
 
- [1]: https://github.com/phatcher/Meerkat.Mailer/License.md
+ [1]: https://github.com/phatcher/Meerkat.Mailer/blob/master/License.md
 
 ## Getting Started
 
