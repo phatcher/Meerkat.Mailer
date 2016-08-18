@@ -16,7 +16,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		nuget\Meerkat.Mailer.nuspec = nuget\Meerkat.Mailer.nuspec
 		README.md = README.md
 		RELEASE_NOTES.md = RELEASE_NOTES.md
-		code\SolutionInfo.cs = code\SolutionInfo.cs
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A09BDB60-F714-4675-980B-F59297EB8197}"

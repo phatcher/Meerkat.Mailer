@@ -23,6 +23,10 @@ namespace Meerkat.Mailer
             message.Cc.AddRange(source.Cc);
             message.Bcc.AddRange(source.Bcc);
             message.Attachments.AddRange(source.Attachments);
+            foreach (var x in source.Headers)
+            {
+                message.Headers[x.Key] = x.Value;
+            }
         }
 
         /// <summary>
@@ -106,6 +110,13 @@ namespace Meerkat.Mailer
             {
                 message.Text = merger.Merge(message.Text);
             }
+
+            if (!string.IsNullOrWhiteSpace(message.Html))
+            {
+                message.Html = merger.Merge(message.Html);
+            }
+
+            // TODO: Do we want to perform merge on the headers and Attachments (when it's a TextAttachment)
         }
 
         /// <summary>

@@ -5,6 +5,10 @@ if not exist packages\FAKE\tools\Fake.exe (
   nuget\nuget.exe install FAKE -OutputDirectory packages -ExcludeVersion
 )
 
+if not exist packages\GitLink\tools\GitLink.exe ( 
+  nuget\nuget.exe install GitLink -OutputDirectory packages -ExcludeVersion
+)
+
 SET TARGET="Default"
 
 if NOT [%1]==[] (set TARGET="%1")
