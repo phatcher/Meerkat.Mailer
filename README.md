@@ -5,7 +5,7 @@ Provides email merge and dispatching capability for desktop and web applications
 
 Available as a NuGet packages [Meerkat.Mailer](https://www.nuget.org/packages/Meerkat.Mailer/)
 
-[![NuGet](https://img.shields.io/nuget/v/Meerkat.Mailer.svg)](https://img.shields.io/nuget/v/Meerkat.Mailer.svg)
+[![NuGet](https://img.shields.io/nuget/v/Meerkat.Mailer.svg)](https://www.nuget.org/packages/Meerkat.Mailer/)
 [![Build status](https://ci.appveyor.com/api/projects/status/t7wnsdotj5xj8s20/branch/master?svg=true)](https://ci.appveyor.com/project/PaulHatcher/meerkat-mailer/branch/master)
 
 Welcome to contributions from anyone.
