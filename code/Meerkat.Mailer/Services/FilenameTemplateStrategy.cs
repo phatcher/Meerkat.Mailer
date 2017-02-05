@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Reflection;
 
-using Common.Logging;
+using Meerkat.Logging;
 
 namespace Meerkat.Mailer.Services
 {
@@ -10,7 +10,7 @@ namespace Meerkat.Mailer.Services
     /// </summary>
     public class FilenameTemplateStrategy : MessageTemplateFileStrategy
     {
-        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog Logger = LogProvider.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public FilenameTemplateStrategy(string path) : base(path)
         {

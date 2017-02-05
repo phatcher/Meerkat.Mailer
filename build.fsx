@@ -1,6 +1,6 @@
 /// FAKE Build script
 
-#r "packages/FAKE/tools/FakeLib.dll"
+#r "packages/build/FAKE/tools/FakeLib.dll"
 open Fake
 open Fake.AssemblyInfoFile
 open Fake.Git
@@ -20,6 +20,7 @@ let release = LoadReleaseNotes "RELEASE_NOTES.md"
 let buildDir = "./build"
 let toolsDir = getBuildParamOrDefault "tools" "./tools"
 let nugetDir = "./nuget"
+let solutionFile = "Meerkat.Mailer.sln"
 
 let nunitPath = toolsDir @@ "NUnit-2.6.3/bin"
 
@@ -46,7 +47,7 @@ Target "SetVersion" (fun _ ->
 )
 
 Target "Build" (fun _ ->
-    !! "./code/**/*.csproj"
+    !! solutionFile
     |> MSBuildRelease buildDir "Build"
     |> Log "AppBuild-Output: "
 )

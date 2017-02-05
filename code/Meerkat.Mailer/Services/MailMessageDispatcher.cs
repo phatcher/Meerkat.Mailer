@@ -4,8 +4,7 @@ using System.Net.Mail;
 using System.Net.Mime;
 using System.Reflection;
 
-using Common.Logging;
-
+using Meerkat.Logging;
 using Meerkat.Mailer.Attachments;
 
 namespace Meerkat.Mailer.Services
@@ -15,7 +14,7 @@ namespace Meerkat.Mailer.Services
     /// </summary>
     public class MailMessageDispatcher : MessageDispatcher
     {
-        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog Logger = LogProvider.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         private readonly IMailAttachmentFactory attachmentFactory;
 

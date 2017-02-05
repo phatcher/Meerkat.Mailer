@@ -2,13 +2,13 @@
 using System.Globalization;
 using System.Reflection;
 
-using Common.Logging;
+using Meerkat.Logging;
 
 namespace Meerkat.Mailer.Services
 {
     public class MessageTemplateMerger : IMessageTemplateMerger
     {
-        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog Logger = LogProvider.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         private readonly IMessageTemplateRepository repository;
 

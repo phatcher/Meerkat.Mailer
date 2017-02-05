@@ -1,15 +1,15 @@
-﻿namespace Meerkat.Mailer.Attachments
+﻿using System.IO;
+using System.Net.Mail;
+using System.Reflection;
+using System.Text;
+
+using Meerkat.Logging;
+
+namespace Meerkat.Mailer.Attachments
 {
-    using System.IO;
-    using System.Net.Mail;
-    using System.Reflection;
-    using System.Text;
-
-    using Common.Logging;
-
-    public class MailAttachmentFactory : IMailAttachmentFactory
+     public class MailAttachmentFactory : IMailAttachmentFactory
     {
-        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog Logger = LogProvider.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public Attachment CreateAttachement(IAttachment source)
         {

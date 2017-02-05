@@ -223,3 +223,6 @@ Desktop.ini
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
+/.paket/paket.exe
+/.fake
+/packages/build

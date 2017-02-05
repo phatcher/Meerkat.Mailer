@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
-using Common.Logging;
+using Meerkat.Logging;
 
 namespace Meerkat.Mailer.Services
 {
@@ -12,7 +12,7 @@ namespace Meerkat.Mailer.Services
     /// </summary>
     public class MessageTemplateDispatcher : IMessageTemplateDispatcher
     {
-        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog Logger = LogProvider.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         private readonly IMessageTemplateRepository repository;
         private readonly IMessageDispatcher dispatcher;

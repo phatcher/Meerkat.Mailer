@@ -5,13 +5,13 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using System.Xml;
 
-using Common.Logging;
+using Meerkat.Logging;
 
 namespace Meerkat.Mailer
 {
     public static class DataContractSerializerExtensions
     {
-        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog Logger = LogProvider.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// Serialize an entity to XML.

@@ -1,17 +1,23 @@
 @echo off
+SETLOCAL
+
 cls
 
-if not exist packages\FAKE\tools\Fake.exe ( 
-  nuget\nuget.exe install FAKE -OutputDirectory packages -ExcludeVersion
+.paket\paket.bootstrapper.exe
+if errorlevel 1 (
+  exit /b %errorlevel%
 )
 
-if not exist packages\GitLink\tools\GitLink.exe ( 
-  nuget\nuget.exe install GitLink -OutputDirectory packages -ExcludeVersion
+.paket\paket.exe restore
+if errorlevel 1 (
+  exit /b %errorlevel%
 )
 
-SET TARGET="Default"
+SET FAKE_PATH=packages\build\FAKE\tools\Fake.exe
+SET Platform=
 
-if NOT [%1]==[] (set TARGET="%1")
-
-"packages\FAKE\tools\FAKE.exe" "build.fsx" "target=%TARGET%" %*
-pause
+IF [%1]==[] (
+    "%FAKE_PATH%" "build.fsx" "Default" 
+) ELSE (
+    "%FAKE_PATH%" "build.fsx" %* 
+) 

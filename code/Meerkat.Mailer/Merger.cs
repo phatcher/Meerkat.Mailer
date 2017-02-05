@@ -25,7 +25,7 @@ namespace Meerkat.Mailer
         private readonly Dictionary<string, object> properties;
 
         /// <summary>
-        /// Initializes a new instance of the Merger class.
+        /// Creates a new instance of the <see cref="Merger"/> class.
         /// </summary>
         public Merger()
         {
@@ -34,7 +34,7 @@ namespace Meerkat.Mailer
         }
 
         /// <summary>
-        /// Initializes a new instance of the Merger class.
+        /// Creates a new instance of the <see cref="Merger"/> class.
         /// </summary>
         /// <param name="properties">Dictionary of properties</param>
         /// <exception cref="ArgumentNullException">When properties is null</exception>
