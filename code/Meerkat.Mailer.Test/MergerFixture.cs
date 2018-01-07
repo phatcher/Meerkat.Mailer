@@ -1,18 +1,18 @@
+using System;
+using System.Collections.Generic;
+
+using NUnit.Framework;
+
 namespace Meerkat.Mailer.Test
 {
-    using System;
-    using System.Collections.Generic;
-
-    using NUnit.Framework;
 
     [TestFixture]
     public class MergerFixture
     {
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void NullPropertiesSupplied()
         {
-            new Merger(null);
+            Assert.Throws<ArgumentNullException>(() => new Merger(null));
         }
 
         [Test]

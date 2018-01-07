@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.IO;
 
 using Meerkat.Mailer.Services;
 
@@ -45,7 +46,8 @@ namespace Meerkat.Mailer.Test.Services
                 Text = "Hello world"
             };
 
-            var strategy = new DirectoryTemplateStrategy("App_Data/MailTemplates");
+            var dataDirectory = Path.Combine(TestContext.CurrentContext.TestDirectory, "App_Data/MailTemplates");
+            var strategy = new DirectoryTemplateStrategy(dataDirectory);
             var repository = new FileMessageTemplateRepository(strategy);
 
             var candidate = repository.Find("fred", new CultureInfo("en-US")) as MessageTemplate;
@@ -66,13 +68,13 @@ namespace Meerkat.Mailer.Test.Services
                 Text = "Hello world"
             };
 
-            var strategy = new FilenameTemplateStrategy("App_Data/MailTemplates");
+            var dataDirectory = Path.Combine(TestContext.CurrentContext.TestDirectory, "App_Data/MailTemplates");
+            var strategy = new DirectoryTemplateStrategy(dataDirectory);
             var repository = new FileMessageTemplateRepository(strategy);
 
             var candidate = repository.Find("fred", new CultureInfo("en-US")) as MessageTemplate;
 
             Check(template, candidate);
         }
-
     }
 }
