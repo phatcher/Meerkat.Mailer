@@ -31,7 +31,9 @@ Target "Clean" (fun _ ->
 )
 
 Target "PackageRestore" (fun _ ->
-    RestorePackages()
+    !! solutionFile
+    |> MSBuildRelease buildDir "Restore"
+    |> Log "AppBuild-Output: "
 )
 
 Target "SetVersion" (fun _ ->
@@ -58,8 +60,9 @@ Target "Test" (fun _ ->
     |> NUnit3 (fun p ->
        {p with
           ToolPath = nunitPath
-          ShadowCopy = false
-          OutputDir = buildDir @@ "TestResults.xml"})
+          // Odditiy as this creates a build directory in the build directory
+          WorkingDir = buildDir
+          ShadowCopy = false})
 )
 
 Target "Pack" (fun _ ->

@@ -1,12 +1,17 @@
+using System;
+using System.Reflection;
+
+using Meerkat.Logging;
+
 namespace Meerkat.Mailer.Services
 {
-    using System;
-
     /// <summary>
-    /// Base implementation of the message dispatcher, handles notification of result leaving just the dispatch mechanism to worry about
+    /// Base implementation of the message dispatcher, handles notification of result leaving just the actual dispatch mechanism to worry about
     /// </summary>
     public abstract class MessageDispatcher : IMessageDispatcher
     {
+        private static readonly ILog Logger = LogProvider.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         private readonly IMessageDispatchNotifier notifier;
         private string deliveryLocation;
         private string server;
@@ -20,12 +25,7 @@ namespace Meerkat.Mailer.Services
             this.notifier = notifier;
         }
 
-        /// <summary>
-        /// Gets or sets the delivery location.
-        /// <para>
-        /// Set a directory here if the message should be written to a directory.
-        /// </para>
-        /// </summary>
+        /// <inheritdoc />
         public string DeliveryLocation
         {
             get
@@ -39,12 +39,7 @@ namespace Meerkat.Mailer.Services
             }
         }
 
-        /// <summary>
-        /// Gets or sets the server property.
-        /// <para>
-        /// Set a valid SMTP server here if the message should be sent directly.
-        /// </para>
-        /// </summary>
+        /// <inheritdoc />
         public string Server
         {
             get
@@ -58,10 +53,7 @@ namespace Meerkat.Mailer.Services
             }
         }
 
-        /// <summary>
-        /// Send a message.
-        /// </summary>
-        /// <param name="message">The message to send</param>
+        /// <inheritdoc />
         public void Send(IMessage message)
         {
             try
@@ -71,7 +63,7 @@ namespace Meerkat.Mailer.Services
             }
             catch (Exception ex)
             {
-                // TODO: Should we log the exception here?
+                Logger.ErrorFormat("Failed sending message {0} - {1}.", message.Subject, ex.Message);
                 Notify(message, false, ex);
             }
         }
@@ -91,10 +83,7 @@ namespace Meerkat.Mailer.Services
         /// <param name="exception"></param>
         protected void Notify(IMessage message, bool ok, Exception exception = null)
         {
-            if (notifier != null)
-            {
-                notifier.Notify(message, ok, exception);
-            }
+            notifier?.Notify(message, ok, exception);
         }
 
         /// <summary>

@@ -51,6 +51,11 @@ namespace Meerkat.Mailer.Services
             try
             {
                 mailer = ConfigureMailClient();
+                if (mailer == null)
+                {
+                    return false;
+                }
+
                 mail = new MailMessage();
 
                 if (!string.IsNullOrWhiteSpace(message.From))
@@ -97,14 +102,13 @@ namespace Meerkat.Mailer.Services
 
                 // Ok, send it
                 TrySend(mail, mailer);
+
+                return true;
             }
             finally
             {
                 // Get rid of the attachments and mailer explicitly - ensure we've sent
-                if (mailer != null)
-                {
-                    mailer.Dispose();
-                }
+                mailer?.Dispose();
 
                 if (mail != null)
                 {
@@ -115,14 +119,12 @@ namespace Meerkat.Mailer.Services
                     mail.Dispose();
                 }
             }
-
-            return true;
         }
 
         private static void TrySend(MailMessage mail, SmtpClient mailer)
         {
             var tries = 0;
-            const int MaxTries = 3;
+            const int maxTries = 3;
             Exception lastException;
             do
             {
@@ -147,7 +149,7 @@ namespace Meerkat.Mailer.Services
                         mail.Subject,
                         string.Join(",", failedAddresses),
                         tries,
-                        MaxTries);
+                        maxTries);
 
                     mail.To.Clear();
                     failedAddresses.ToList().ForEach(x => mail.To.Add(x));
@@ -155,38 +157,46 @@ namespace Meerkat.Mailer.Services
                 catch (SmtpException smtpException)
                 {
                     lastException = smtpException;
-                    Logger.ErrorFormat("Failed sending message {0} - {1}. Attempt {2}/{3}", mail.Subject, smtpException.Message, tries, MaxTries);
+                    Logger.ErrorFormat("Failed sending message {0} - {1}. Attempt {2}/{3}", mail.Subject, smtpException.Message, tries, maxTries);
                 }
             }
-            while (tries < MaxTries);
+            while (tries < maxTries);
 
             throw lastException;
         }
 
         private SmtpClient ConfigureMailClient()
         {
-            // Get a client configured by app.config (System.Net.MailSettings)
-            var client = new SmtpClient();
-
-            // Override if supplied
-            if (!string.IsNullOrEmpty(Server))
+            try
             {
-                // Use server delivery if we have it
-                client.Host = Server;
-            }
-            else if (!string.IsNullOrEmpty(DeliveryLocation))
-            {
-                // Or an explicit delivery location
-                client.PickupDirectoryLocation = DeliveryLocation;
-                client.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
-            }
+                // Get a client configured by app.config (System.Net.MailSettings)
+                var client = new SmtpClient();
 
-            if (string.IsNullOrWhiteSpace(client.Host) && string.IsNullOrWhiteSpace(client.PickupDirectoryLocation))
-            {
-                throw new NotSupportedException("Must specify either SMTP Server or delivery location");
-            }
+                // Override if supplied
+                if (!string.IsNullOrEmpty(Server))
+                {
+                    // Use server delivery if we have it
+                    client.Host = Server;
+                }
+                else if (!string.IsNullOrEmpty(DeliveryLocation))
+                {
+                    // Or an explicit delivery location
+                    client.PickupDirectoryLocation = DeliveryLocation;
+                    client.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
+                }
 
-            return client;
+                if (string.IsNullOrWhiteSpace(client.Host) && string.IsNullOrWhiteSpace(client.PickupDirectoryLocation))
+                {
+                    throw new NotSupportedException("Must specify either SMTP Server or delivery location");
+                }
+
+                return client;
+            }
+            catch (Exception ex)
+            {
+                Logger.ErrorFormat("Smtp configuration error: {0} ", ex.Message);
+                return null;
+            }
         }
     }
 }
