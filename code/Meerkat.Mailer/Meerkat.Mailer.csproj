@@ -3,16 +3,16 @@
     <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <RootNamespace>Meerkat.Mailer</RootNamespace>
-    <Description>An activity based security framework</Description>
+    <Description>Email templating and dispatch framework</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Meerkat.Mailer</PackageId>
     <Title>Meerkat Mailer</Title>
     <Copyright>Copyright © 2016 Paul Hatcher</Copyright>
     <PackageLicenseUrl>http://opensource.org/licenses/mit-license.php</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/phatcher/Meerkat.Security</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/phatcher/Meerkat.Mailer</PackageProjectUrl>
     <PackageRequireLicenceAcceptance>False</PackageRequireLicenceAcceptance>
-    <PackageTags>Security claims RBAC ABAC</PackageTags>
-    <RepositoryUrl>https://github.com/phatcher/Meerkat.Security</RepositoryUrl>
+    <PackageTags>Email smtp msg template mailmerge</PackageTags>
+    <RepositoryUrl>https://github.com/phatcher/Meerkat.Mailer</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Authors>Paul Hatcher</Authors>
 	<OutputPath>$(SolutionDir)/build/$(Configuration)/$(AssemblyName)/$(TargetFramework)/</OutputPath>
@@ -41,6 +41,5 @@
   </ItemGroup>
   <ItemGroup>
       <Reference Include="System.Configuration" Condition="'$(TargetFramework)' != 'netstandard2.0'" />
-      <Reference Include="System.Runtime.Caching" Condition="'$(TargetFramework)' != 'netstandard2.0'" />
   </ItemGroup>
 </Project>
