@@ -1,10 +1,10 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Text.RegularExpressions;
+
 namespace Meerkat.Mailer
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Text.RegularExpressions;
-
     /// <summary>
     /// Merges property values over a text template
     /// </summary>
@@ -97,8 +97,7 @@ namespace Meerkat.Mailer
             }
 
             // NB Using TryGetValue is 50% cheaper than ContainsKey + indexer.
-            object value;
-            if (!properties.TryGetValue(propertyName, out value))
+            if (!properties.TryGetValue(propertyName, out var value))
             {
                 return string.Empty;
             }
@@ -123,10 +122,7 @@ namespace Meerkat.Mailer
                 props = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
             }
 
-            public IDictionary<string, string> Properties
-            {
-                get { return props; }
-            }
+            public IDictionary<string, string> Properties => props;
 
             public string Log(Match m)
             {

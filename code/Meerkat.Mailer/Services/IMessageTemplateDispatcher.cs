@@ -1,8 +1,8 @@
+using System.Collections.Generic;
+using System.Globalization;
+
 namespace Meerkat.Mailer.Services
 {
-    using System.Collections.Generic;
-    using System.Globalization;
-
     /// <summary>
     /// Sends a message based on a template
     /// </summary>

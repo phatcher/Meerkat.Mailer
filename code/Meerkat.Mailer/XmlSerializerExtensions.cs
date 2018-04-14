@@ -5,13 +5,13 @@ using System.Reflection;
 using System.Xml.Serialization;
 using System.Xml;
 
-using Common.Logging;
+using Meerkat.Logging;
 
 namespace Meerkat.Mailer
 {
     public static class XmlSerializerExtensions
     {
-        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog Logger = LogProvider.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// Default <see cref="XmlWriterSettings"/> that give a nicely formatted file without header
@@ -76,10 +76,7 @@ namespace Meerkat.Mailer
             }
             finally
             {
-                if (reader != null)
-                {
-                    reader.Close();
-                }
+                reader?.Close();
             }
         }
 

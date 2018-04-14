@@ -3,23 +3,7 @@
     <metadata>
         <id>Meerkat.Mailer</id>
         <title>Meerkat.Mailer</title>
-        <description>Email template and dispatch library</description>
         <version>1.0.0</version>
-        <licenseUrl>http://opensource.org/licenses/mit-license.php</licenseUrl>
-        <copyright>Copyright © 2016 Paul Hatcher</copyright>
         <owners>Paul Hatcher</owners>
-        <authors>@authors@</authors>
-        <projectUrl>https://github.com/phatcher/Meerkat.Mailer</projectUrl>
-        <releaseNotes>@releaseNotes@</releaseNotes>
-        <tags></tags>
-        <dependencies>
-            <dependency id="Meerkat.Logging" version="1.0.2" />
-        </dependencies>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
     </metadata>
-    <files>
-        <file src="..\build\Meerkat.Mailer.dll" target="lib\net35" />
-        <file src="..\build\Meerkat.Mailer.pdb" target="lib\net35" />
-        <file src="..\build\Meerkat.Mailer.xml" target="lib\net35" />
-    </files>
 </package>

@@ -1,6 +1,4 @@
-﻿using System.Net.Mail;
-
-using SendGrid;
+﻿using SendGrid.Helpers.Mail;
 
 namespace Meerkat.Mailer.SendGrid
 {
@@ -10,15 +8,20 @@ namespace Meerkat.Mailer.SendGrid
         {
             var sgMessage = new SendGridMessage
             {
-                From = new MailAddress(message.From.PrettyEmail(message.FromName)),
+                From = new EmailAddress(message.From.PrettyEmail(message.FromName)),
                 Subject = message.Subject,
             };
 
-            sgMessage.AddTo(message.ToAddress);
+            foreach (var address in message.ToAddress)
+            {
+                sgMessage.AddTo(address);
+            }
+
             foreach (var address in message.Cc)
             {
                 sgMessage.AddCc(address);
             }
+
             foreach (var address in message.Bcc)
             {
                 sgMessage.AddBcc(address);
@@ -26,12 +29,12 @@ namespace Meerkat.Mailer.SendGrid
 
             if (!string.IsNullOrEmpty(message.Html))
             {
-                sgMessage.Html = message.Html;
+                sgMessage.HtmlContent = message.Html;
             }
 
             if (!string.IsNullOrEmpty(message.Text))
             {
-                sgMessage.Text = message.Text;
+                sgMessage.PlainTextContent = message.Text;
             }
 
             return sgMessage;

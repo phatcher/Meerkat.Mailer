@@ -1,4 +1,6 @@
-﻿using Meerkat.Mailer.Services;
+﻿using System.Net;
+
+using Meerkat.Mailer.Services;
 
 using SendGrid;
 
@@ -18,13 +20,12 @@ namespace Meerkat.Mailer.SendGrid.Services
         {
             var sgMessage = message.ToSendGridMessage();
 
-            sgMessage.EnableClickTracking(configuration.EnableClickTracking);
-
             // Send the email
-            var transportWeb = new Web(configuration.ApiKey);
-            transportWeb.DeliverAsync(sgMessage);
+            var client = new SendGridClient(configuration.ApiKey);
+            var response = client.SendEmailAsync(sgMessage).Result;
 
-            return true;
+            // TODO: Track failure/bounce etc
+            return response.StatusCode == HttpStatusCode.Accepted;
         }
     }
 }
