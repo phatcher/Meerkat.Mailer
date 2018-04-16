@@ -38,8 +38,8 @@ namespace Meerkat.Mailer
         [XmlIgnore]
         public List<IAttachment> Attachments 
         {
-            get { return attachments ?? (attachments = new List<IAttachment>()); }
-            set { attachments = value; }
+            get => attachments ?? (attachments = new List<IAttachment>());
+            set => attachments = value;
         }
 
         /// <summary>
@@ -69,8 +69,8 @@ namespace Meerkat.Mailer
         [XmlAttribute("replyToEmail")]
         public string ReplyTo
         {
-            get { return string.IsNullOrEmpty(replyTo) ? From : replyTo; }
-            set { replyTo = value; }
+            get => string.IsNullOrEmpty(replyTo) ? From : replyTo;
+            set => replyTo = value;
         }
 
         /// <summary>

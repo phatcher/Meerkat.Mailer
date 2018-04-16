@@ -12,10 +12,10 @@ Welcome to contributions from anyone.
 
 You can see the version history [here](RELEASE_NOTES.md).
 
-## Build the project
+# Build the project
 * Windows: Run *build.cmd*
 
-I have my tools in C:\Tools so I use *build.cmd Default tools=C:\Tools encoding=UTF-8*
+The tooling should be automatically installed by paket/Fake. The default build will compile and test the project, and also produce the nuget packages.
 
 ## Library License
 

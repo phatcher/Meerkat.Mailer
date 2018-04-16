@@ -1,7 +1,7 @@
+using System;
+
 namespace Meerkat.Mailer.Services
 {
-    using System;
-
     /// <summary>
     /// Listener for message dispatch
     /// </summary>

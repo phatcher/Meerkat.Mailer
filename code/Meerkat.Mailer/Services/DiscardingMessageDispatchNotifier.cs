@@ -1,7 +1,7 @@
-﻿namespace Meerkat.Mailer.Services
-{
-    using System;
+﻿using System;
 
+namespace Meerkat.Mailer.Services
+{
     /// <summary>
     /// Discards notifications it receives, useful for testing
     /// </summary>

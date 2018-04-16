@@ -17,6 +17,8 @@ namespace Meerkat.Mailer
             {
                 if (fileName.StartsWith("~"))
                 {
+                    // TODO: Convert this to use a static class property and configure at startup.
+#if net452
                     if (string.IsNullOrEmpty(HttpRuntime.AppDomainAppPath))
                     {
                         throw new NotSupportedException("Cannot map web paths without a HttpRuntime.AppDomainAppPath");
@@ -25,6 +27,9 @@ namespace Meerkat.Mailer
                     // Strip the ~ before combining
                     var path = Path.Combine(HttpRuntime.AppDomainAppPath, fileName.Substring(1));
                     return path;
+#else
+                    throw new NotSupportedException("Cannot map web paths in .NET Core");
+#endif
                 }
 
                 if (fileName.StartsWith("."))

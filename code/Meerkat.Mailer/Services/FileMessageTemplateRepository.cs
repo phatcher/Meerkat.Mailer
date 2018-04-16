@@ -36,8 +36,7 @@ namespace Meerkat.Mailer.Services
                 throw new ArgumentNullException("entity");
             }
 
-            var template = entity as MessageTemplate;
-            if (template == null)
+            if (!(entity is MessageTemplate template))
             {
                 throw new NotSupportedException("Cannot persist unless entity is a MessageTemplate");
             }
