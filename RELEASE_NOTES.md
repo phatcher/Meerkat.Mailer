@@ -1,3 +1,6 @@
+#### 1.1.0 (2018-08-30)
+* Target net462, net471 and net472
+
 #### 1.0.4 (2018-04-14)
 * Convert to VS2017 project format and update dependencies, some netstandard20 support
 
