@@ -22,9 +22,13 @@
 	<DelaySign>false</DelaySign>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Meerkat.Logging" Version="2.2.0" />
-    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+    <PackageReference Include="Meerkat.Logging" Version="2.2.1" />
+    <!--<PackageReference Include="Microsoft.CSharp" Version="4.5.0" Condition="'$(TargetFramework)' == 'netstandard2.0'" />-->
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
+  </ItemGroup>
+  <ItemGroup>
+    <!--<Reference Include="Microsoft.CSharp" Condition="'$(TargetFramework)' != 'netstandard2.0'" />-->
+    <Reference Include="System.Configuration" Condition="'$(TargetFramework)' != 'netstandard2.0'" />
   </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG</DefineConstants>

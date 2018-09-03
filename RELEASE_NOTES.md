@@ -1,3 +1,6 @@
+#### 1.1.1 (2018-09-03)
+* Tidy up package dependencies
+
 #### 1.1.0 (2018-08-30)
 * Target net462, net471 and net472
 
