@@ -1,3 +1,6 @@
+#### 1.1.2 (2019-03-10)
+* Introduce SourceLink, update dependencies
+
 #### 1.1.1 (2018-09-03)
 * Tidy up package dependencies
 

@@ -3,15 +3,15 @@ using System.Reflection;
 
 [assembly: AssemblyProductAttribute("Meerkat.Mailer")]
 [assembly: AssemblyCopyrightAttribute("Copyright � 2016 Paul Hatcher")]
-[assembly: AssemblyVersionAttribute("1.1.1")]
-[assembly: AssemblyFileVersionAttribute("1.1.1")]
-[assembly: AssemblyInformationalVersionAttribute("1.1.1 a74062")]
+[assembly: AssemblyVersionAttribute("1.1.2")]
+[assembly: AssemblyFileVersionAttribute("1.1.2")]
+[assembly: AssemblyInformationalVersionAttribute("1.1.2 6313b5")]
 namespace System {
     internal static class AssemblyVersionInformation {
         internal const System.String AssemblyProduct = "Meerkat.Mailer";
         internal const System.String AssemblyCopyright = "Copyright � 2016 Paul Hatcher";
-        internal const System.String AssemblyVersion = "1.1.1";
-        internal const System.String AssemblyFileVersion = "1.1.1";
-        internal const System.String AssemblyInformationalVersion = "1.1.1 a74062";
+        internal const System.String AssemblyVersion = "1.1.2";
+        internal const System.String AssemblyFileVersion = "1.1.2";
+        internal const System.String AssemblyInformationalVersion = "1.1.2 6313b5";
     }
 }
